@@ -1,44 +1,26 @@
-export default class Vector {
+export type Vector = {
   x: number;
   y: number;
+};
 
-  constructor(x: number, y: number) {
-    this.x = x;
-    this.y = y;
-  }
-
-  get direction() {
-    return Math.atan2(this.y, this.x);
-  }
-
-  get magnitude() {
-    return Math.hypot(this.x, this.y);
-  }
-
-  add(other: Vector) {
-    return new Vector(this.x + other.x, this.y + other.y);
-  }
-
-  dot(other: Vector) {
-    return this.x * other.x + this.y * other.y;
-  }
-
-  normalize() {
-    return this.scale(1 / this.magnitude);
-  }
-
-  scale(scalar: number) {
-    return new Vector(this.x * scalar, this.y * scalar);
-  }
-
-  subtract(other: Vector) {
-    return new Vector(this.x - other.x, this.y - other.y);
-  }
-
-  static fromPolar(magnitude: number, direction: number) {
-    return new Vector(
-      magnitude * Math.cos(direction),
-      magnitude * Math.sin(direction),
-    );
-  }
-}
+export default {
+  direction: ({ x, y }: Vector): number => Math.atan2(x, y),
+  magnitude: ({ x, y }: Vector): number => Math.hypot(x, y),
+  sum: (a: Vector, b: Vector): Vector => ({
+    x: a.x + b.x,
+    y: a.y + b.y,
+  }),
+  diff: (a: Vector, b: Vector): Vector => ({
+    x: a.x - b.x,
+    y: a.y - b.y,
+  }),
+  scale: ({ x, y }: Vector, scalar: number): Vector => ({
+    x: x * scalar,
+    y: y * scalar,
+  }),
+  dot: (a: Vector, b: Vector): number => a.x * b.x + a.y * b.y,
+  fromPolar: (magnitude: number, direction: number): Vector => ({
+    x: magnitude * Math.sin(direction),
+    y: magnitude * Math.cos(direction),
+  }),
+};
