@@ -4,7 +4,7 @@ export type Vector = {
 };
 
 export default {
-  direction: ({ x, y }: Vector): number => Math.atan2(x, y),
+  direction: ({ x, y }: Vector): number => Math.atan2(y, x),
   magnitude: ({ x, y }: Vector): number => Math.hypot(x, y),
   sum: (a: Vector, b: Vector): Vector => ({
     x: a.x + b.x,
@@ -20,7 +20,7 @@ export default {
   }),
   dot: (a: Vector, b: Vector): number => a.x * b.x + a.y * b.y,
   fromPolar: (magnitude: number, direction: number): Vector => ({
-    x: magnitude * Math.sin(direction),
-    y: magnitude * Math.cos(direction),
+    x: magnitude * Math.cos(direction),
+    y: magnitude * Math.sin(direction),
   }),
 };

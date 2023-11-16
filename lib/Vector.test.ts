@@ -2,7 +2,7 @@ import { expect, test } from "bun:test";
 import V, { Vector } from "./Vector";
 
 test("direction", function () {
-  expect(V.direction({ x: 1, y: 2 })).toBe(Math.atan2(1, 2));
+  expect(V.direction({ x: 1, y: 2 })).toBe(Math.atan2(2, 1));
 });
 
 test("magnitude", function () {
@@ -27,5 +27,8 @@ test("dot", function () {
 
 test("fromPolar", function () {
   const v: Vector = { x: 1, y: 2 };
-  expect(V.fromPolar(V.magnitude(v), V.direction(v))).toEqual(v);
+  const { x, y } = V.fromPolar(V.magnitude(v), V.direction(v));
+
+  expect(Math.abs(x - v.x)).toBeLessThanOrEqual(Number.EPSILON);
+  expect(Math.abs(y - v.y)).toBeLessThanOrEqual(Number.EPSILON);
 });
