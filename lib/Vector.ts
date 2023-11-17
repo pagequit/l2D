@@ -5,35 +5,49 @@ export type Vector = {
   y: number;
 };
 
-export const direction = ({ x, y }: Vector): Angle => ({
-  radians: Math.atan2(y, x),
-});
+export function direction({ x, y }: Vector): Angle {
+  return { radians: Math.atan2(y, x) };
+}
 
-export const magnitude = ({ x, y }: Vector): number => Math.hypot(x, y);
+export function magnitude({ x, y }: Vector): number {
+  return Math.hypot(x, y);
+}
 
-export const sum = (a: Vector, b: Vector): Vector => ({
-  x: a.x + b.x,
-  y: a.y + b.y,
-});
+export function sum(a: Vector, b: Vector): Vector {
+  return {
+    x: a.x + b.x,
+    y: a.y + b.y,
+  };
+}
 
-export const diff = (a: Vector, b: Vector): Vector => ({
-  x: a.x - b.x,
-  y: a.y - b.y,
-});
+export function diff(a: Vector, b: Vector): Vector {
+  return {
+    x: a.x - b.x,
+    y: a.y - b.y,
+  };
+}
 
-export const scale = ({ x, y }: Vector, scalar: number): Vector => ({
-  x: x * scalar,
-  y: y * scalar,
-});
+export function scale({ x, y }: Vector, scalar: number): Vector {
+  return {
+    x: x * scalar,
+    y: y * scalar,
+  };
+}
 
-export const normalize = (v: Vector): Vector => scale(v, 1 / magnitude(v));
+export function normalize(v: Vector): Vector {
+  return scale(v, 1 / magnitude(v));
+}
 
-export const dot = (a: Vector, b: Vector): number => a.x * b.x + a.y * b.y;
+export function dot(a: Vector, b: Vector): number {
+  return a.x * b.x + a.y * b.y;
+}
 
-export const fromPolar = (magnitude: number, direction: number): Vector => ({
-  x: magnitude * Math.cos(direction),
-  y: magnitude * Math.sin(direction),
-});
+export function fromPolar(magnitude: number, direction: number): Vector {
+  return {
+    x: magnitude * Math.cos(direction),
+    y: magnitude * Math.sin(direction),
+  };
+}
 
 export default {
   direction,
