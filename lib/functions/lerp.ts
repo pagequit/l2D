@@ -1,6 +1,6 @@
-import type { Vector } from "./Vector";
+import type { Vector } from "../entities/Vector";
 
-export default function lerp(a: number, b: number, t: number) {
+export default function lerp(a: number, b: number, t: number): number {
   return a + (b - a) * t;
 }
 
